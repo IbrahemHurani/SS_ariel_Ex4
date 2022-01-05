@@ -60,7 +60,7 @@ void insert_node_cmd(pnode *head) {
 
 	}
 	scanf("%d", &idDest);
-	while (idDest !=0) {
+	while (idDest !=0&&idDest!=EOF) {
 		pnode NodeDest = searchNode(head, idDest);
 		if (NodeDest == NULL) {
 			NodeDest = (pnode)malloc(sizeof(node));
@@ -276,7 +276,7 @@ void TSP_cmd(pnode head) {
 	for (i = 0; i < sizeTsp-1; i++) {
 		sum += shortsPath_cmd2(head, arr[i], arr[i + 1]);
 	}
-	printf("%d", sum);
+	printf("TSP shortest path: %d", sum);
 	free(arr);
 }
 
