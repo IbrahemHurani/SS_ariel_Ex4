@@ -59,7 +59,7 @@ void insert_node_cmd(pnode *head) {
 
 	}
 	scanf("%d", &idDest);
-	while (idDest !=0&&idDest!=EOF) {
+	while (idDest!=EOF) {
 		pnode NodeDest = searchNode(head, idDest);
 		if (NodeDest == NULL) {
 			NodeDest = (pnode)malloc(sizeof(node));
@@ -95,19 +95,19 @@ void insert_node_cmd(pnode *head) {
 			NodeSrc->edges->next = e;
 
 		}
-
-		
+        
 		scanf("%d",&idDest);
 	}
 }
 
 void build_graph_cmd(pnode *head) {
 	deleteGraph_cmd(head);
-	int sizeNode=1;
+	int sizeNode;
 	char ch;
 	scanf("%d", &sizeNode);
 	scanf("%c",&ch);
 	while (sizeNode > 0) {
+		scanf("%c",&ch);
 		insert_node_cmd(head);
 		sizeNode--;
 	}
