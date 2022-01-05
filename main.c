@@ -32,7 +32,6 @@ int main()
 		}
 
 	}
-	//printGraph_cmd(head);
 	deleteGraph_cmd(&head);
 	return 0;
 }
