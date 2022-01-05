@@ -4,8 +4,7 @@ int main()
 {   
 	pnode head =NULL ;
 	char select;
-	do {
-		scanf("%c", &select);
+		while(scanf("%c", &select)!=EOF){
 		switch (select)
 		{
 		case 'A': {
@@ -25,14 +24,14 @@ int main()
 			shortsPath_cmd(head);
 			break;
 		}
-		case 'T':
+		case 'T':{
 			 TSP_cmd(head);
 			break;
-
+		}
 
 		}
 
-	} while (select != EOF);
+	}
 	//printGraph_cmd(head);
 	deleteGraph_cmd(&head);
 	return 0;
