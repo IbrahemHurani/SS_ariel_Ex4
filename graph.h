@@ -1,5 +1,5 @@
-#ifndef GRAPH_
-#define GRAPH_
+#ifndef _graph
+#define _graph
 
 typedef struct GRAPH_NODE_ *pnode;;
 
