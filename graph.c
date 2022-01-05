@@ -39,7 +39,6 @@ void insert_node_cmd(pnode *head) {
 	if (NodeSrc== NULL) {
 		NodeSrc = (pnode)malloc(sizeof(node));
 		if (NodeSrc == NULL) {
-			printf("memory for NodeSrc is Error");
 			return;
 		}
 		else {
@@ -65,7 +64,6 @@ void insert_node_cmd(pnode *head) {
 		if (NodeDest == NULL) {
 			NodeDest = (pnode)malloc(sizeof(node));
 			if (NodeDest == NULL) {
-				printf("memory for NodeDest is Error");
 				return;
 			}
 			else {
