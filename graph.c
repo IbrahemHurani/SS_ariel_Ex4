@@ -221,10 +221,10 @@ void shortsPath_cmd(pnode head) {
 		temp2 = temp2->next;
 	}
 	if (searchNode(&head, dest)->weight > 0) {
-		printf("Dijsktra shortest path: %d", searchNode(&head, dest)->weight);
+		printf("Dijsktra shortest path: %d\n", searchNode(&head, dest)->weight);
 	}
 	else {
-		printf("Dijsktra shortest path: -1");
+		printf("Dijsktra shortest path: -1\n");
 	}
 
 }
@@ -277,7 +277,7 @@ void TSP_cmd(pnode head) {
 	for (i = 0; i < sizeTsp-1; i++) {
 		sum += shortsPath_cmd2(head, arr[i], arr[i + 1]);
 	}
-	printf("TSP shortest path: %d", sum);
+	printf("TSP shortest path: %d\n", sum);
 	free(arr);
 }
 
