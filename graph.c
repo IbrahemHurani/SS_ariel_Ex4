@@ -60,7 +60,7 @@ void insert_node_cmd(pnode *head) {
 
 	}
 	scanf("%d", &idDest);
-	while (idDest !=0&&idDest!=EOF) {
+	while (idDest !=0&&idDest!=EOF&&idDest!='n') {
 		pnode NodeDest = searchNode(head, idDest);
 		if (NodeDest == NULL) {
 			NodeDest = (pnode)malloc(sizeof(node));
