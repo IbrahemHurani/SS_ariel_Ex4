@@ -110,7 +110,6 @@ void build_graph_cmd(pnode *head) {
 	scanf("%d", &sizeNode);
 	scanf("%c",&ch);
 	while (sizeNode > 0) {
-	       scanf("%c",&ch);
 		insert_node_cmd(head);
 		sizeNode--;
 	}
