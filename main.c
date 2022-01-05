@@ -32,7 +32,7 @@ int main()
 
 		}
 
-	} while (select != 0);
+	} while (select != EOF);
 	//printGraph_cmd(head);
 	deleteGraph_cmd(&head);
 	return 0;
