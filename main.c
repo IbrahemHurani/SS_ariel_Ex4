@@ -1,37 +1,33 @@
 #include"graph.h"
 #include<stdio.h>
 int main()
-{   
-	pnode head =NULL ;
+{
+	pnode head = NULL;
 	char select;
-		while(scanf("%c", &select)!=EOF){
-		switch (select)
-		{
-		case 'A': {
+	while (scanf("%c", &select) !=EOF) {
+	    if(select=='A'){
 			build_graph_cmd(&head);
-			break;
 		}
-		case'B': {
+		if(select=='B'){
 			insert_node_cmd(&head);
-			break;
-		}
-		case 'D': {
+		  }
+		if(select=='D'){
 			delete_node_cmd(&head);
-			break;
+	
 		}
-		case'S':
-		{ 
+		if(select=='S'){
 			shortsPath_cmd(head);
+		}
+	
+		if(select=='T'){
+			TSP_cmd(head);
+		}
+		else{
 			break;
 		}
-		case 'T':{
-			 TSP_cmd(head);
-			break;
-		}
-
-		}
-
+		
 	}
+	//printGraph_cmd(head);
 	deleteGraph_cmd(&head);
 	return 0;
 }
