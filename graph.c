@@ -6,23 +6,23 @@ void deleteGraph_cmd(pnode* head) {
 	pnode current = *head;
 	while (current != NULL) {
 		pedge signaledge = current->edges;
-		while (signaledge!= NULL) {
+		while (signaledge != NULL) {
 			pedge Redge = signaledge->next;
 			free(signaledge);
 			signaledge = Redge;
-			
+
 		}
-		 pnode Rnode = current;
-		 current = current->next;
-		 free(Rnode);
+		pnode Rnode = current;
+		current = current->next;
+		free(Rnode);
 
 	}
-	 head = NULL;
+	head = NULL;
 }
-pnode searchNode(pnode *head,int key) {
+pnode searchNode(pnode *head, int key) {
 	pnode search = *head;
 	while (search != NULL) {
-	
+
 		if (search->node_num == key) {
 			return search;
 		}
@@ -34,9 +34,10 @@ pnode searchNode(pnode *head,int key) {
 
 void insert_node_cmd(pnode *head) {
 	int idSrc, idDest, weight;
-	scanf("%d",&idSrc);
-	pnode NodeSrc= searchNode(head, idSrc);
-	if (NodeSrc== NULL) {
+	char stop = 0;
+	scanf("%d", &idSrc);
+	pnode NodeSrc = searchNode(head, idSrc);
+	if (NodeSrc == NULL) {
 		NodeSrc = (pnode)malloc(sizeof(node));
 		if (NodeSrc == NULL) {
 			return;
@@ -59,7 +60,7 @@ void insert_node_cmd(pnode *head) {
 
 	}
 	scanf("%d", &idDest);
-	while (idDest!=EOF) {
+	while (stop != 'n' && stop != EOF&&stop!='\n') {
 		pnode NodeDest = searchNode(head, idDest);
 		if (NodeDest == NULL) {
 			NodeDest = (pnode)malloc(sizeof(node));
@@ -95,8 +96,9 @@ void insert_node_cmd(pnode *head) {
 			NodeSrc->edges->next = e;
 
 		}
-        
-		scanf("%d",&idDest);
+		scanf("%c", &stop);
+		scanf("%c", &stop);
+		idDest = (stop)-'0';
 	}
 }
 
@@ -105,14 +107,14 @@ void build_graph_cmd(pnode *head) {
 	int sizeNode;
 	char ch;
 	scanf("%d", &sizeNode);
-	scanf("%c",&ch);
+	scanf("%c", &ch);
+	scanf("%c", &ch);
 	while (sizeNode > 0) {
-		scanf("%c",&ch);
 		insert_node_cmd(head);
 		sizeNode--;
 	}
 
-	
+
 }
 void printGraph_cmd(pnode head) {
 	pnode temp = head;
@@ -164,11 +166,11 @@ int findminNode(pnode *head) {
 	int minweight = infinity;
 	int id = 1;
 	while (temp != NULL) {
-			if (temp->weight <= minweight&&temp->tag==0) {
-				minweight = temp->weight;
-				id = temp->node_num;
-			}
-		
+		if (temp->weight <= minweight&&temp->tag == 0) {
+			minweight = temp->weight;
+			id = temp->node_num;
+		}
+
 		temp = temp->next;
 	}
 	return id;
@@ -191,9 +193,9 @@ void shortsPath_cmd(pnode head) {
 	scanf("%d", &dest);
 	pnode temp = head;
 	pnode temp2 = head;
-   while (temp != NULL) {
-      temp->weight = infinity;//set the weight for Node not for edge.
-	  temp->tag = 0;//this for check if visit this node
+	while (temp != NULL) {
+		temp->weight = infinity;//set the weight for Node not for edge.
+		temp->tag = 0;//this for check if visit this node
 		temp = temp->next;
 	}
 	setWeight(&head, src, 0);//set the weight for Node not for edge.
@@ -207,8 +209,8 @@ void shortsPath_cmd(pnode head) {
 					int eWeight = e->weight;
 					int srcPlusEdge = searchNode(&head, min)->weight + eWeight;
 					if (srcPlusEdge < currentWeight) {
-						setWeight(&head,e->endpoint->node_num, srcPlusEdge);
-						
+						setWeight(&head, e->endpoint->node_num, srcPlusEdge);
+
 					}
 					e = e->next;
 				}
@@ -225,7 +227,7 @@ void shortsPath_cmd(pnode head) {
 	}
 
 }
-int shortsPath_cmd2(pnode head,int src ,int dest) {
+int shortsPath_cmd2(pnode head, int src, int dest) {
 	pnode temp = head;
 	pnode temp2 = head;
 	while (temp != NULL) {
@@ -255,23 +257,23 @@ int shortsPath_cmd2(pnode head,int src ,int dest) {
 		temp2 = temp2->next;
 	}
 	return searchNode(&head, dest)->weight;
-	
+
 }
 void TSP_cmd(pnode head) {
 	int sizeTsp;
 	int *arr;
 	scanf("%d", &sizeTsp);
-	arr= (int*)malloc(sizeTsp * sizeof(int));
+	arr = (int*)malloc(sizeTsp * sizeof(int));
 	if (arr == NULL) {
 		return;
 	}
-	int i =0;
+	int i = 0;
 	while (i< sizeTsp) {
 		scanf("%d", &arr[i]);
 		i++;
 	}
-	int sum=0;
-	for (i = 0; i < sizeTsp-1; i++) {
+	int sum = 0;
+	for (i = 0; i < sizeTsp - 1; i++) {
 		sum += shortsPath_cmd2(head, arr[i], arr[i + 1]);
 	}
 	printf("TSP shortest path: %d\n", sum);
