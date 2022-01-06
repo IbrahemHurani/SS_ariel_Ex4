@@ -4,8 +4,8 @@ int main()
 {
 	pnode head = NULL;
 	char select;
-	scanf("%c", &select) ;
-	while (select!=EOF) {
+	scanf("%c", &select);
+	while (select != EOF) {
 		switch (select)
 		{
 		case 'A': {
@@ -31,7 +31,7 @@ int main()
 		}
 
 		}
-     scanf("%c", &select);
+		scanf("%c", &select);
 	}
 	//printGraph_cmd(head);
 	deleteGraph_cmd(&head);
