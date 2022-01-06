@@ -60,45 +60,47 @@ void insert_node_cmd(pnode *head) {
 
 	}
 	scanf("%d", &idDest);
-	while (stop != 'n' && stop != EOF&&stop!='\n') {
-		pnode NodeDest = searchNode(head, idDest);
-		if (NodeDest == NULL) {
-			NodeDest = (pnode)malloc(sizeof(node));
+	if (idDest >= 0) {
+		while (stop != 'n' && stop != EOF&&stop != '\n') {
+			pnode NodeDest = searchNode(head, idDest);
 			if (NodeDest == NULL) {
-				return;
+				NodeDest = (pnode)malloc(sizeof(node));
+				if (NodeDest == NULL) {
+					return;
+				}
+				else {
+					NodeDest->node_num = idDest;
+					NodeDest->edges = NULL;
+					NodeDest->next = *head;
+					*head = NodeDest;
+				}
+			}
+			scanf("%d", &weight);
+			if (NodeSrc->edges == NULL) {
+				NodeSrc->edges = (pedge)malloc(sizeof(edge));
+				if (NodeSrc->edges == NULL) {
+					return;
+				}
+				NodeSrc->edges->endpoint = NodeDest;
+				NodeSrc->edges->weight = weight;
+				NodeSrc->edges->next = NULL;
 			}
 			else {
-				NodeDest->node_num = idDest;
-				NodeDest->edges = NULL;
-				NodeDest->next = *head;
-				*head = NodeDest;
-			}
-		}
-		scanf("%d", &weight);
-		if (NodeSrc->edges == NULL) {
-			NodeSrc->edges = (pedge)malloc(sizeof(edge));
-			if (NodeSrc->edges == NULL) {
-				return;
-			}
-			NodeSrc->edges->endpoint = NodeDest;
-			NodeSrc->edges->weight = weight;
-			NodeSrc->edges->next = NULL;
-		}
-		else {
-			pedge e = NodeSrc->edges;
-			NodeSrc->edges = NodeSrc->edges->next;
-			NodeSrc->edges = (pedge)malloc(sizeof(edge));
-			if (NodeSrc->edges == NULL) {
-				return;
-			}
-			NodeSrc->edges->endpoint = NodeDest;
-			NodeSrc->edges->weight = weight;
-			NodeSrc->edges->next = e;
+				pedge e = NodeSrc->edges;
+				NodeSrc->edges = NodeSrc->edges->next;
+				NodeSrc->edges = (pedge)malloc(sizeof(edge));
+				if (NodeSrc->edges == NULL) {
+					return;
+				}
+				NodeSrc->edges->endpoint = NodeDest;
+				NodeSrc->edges->weight = weight;
+				NodeSrc->edges->next = e;
 
+			}
+			scanf("%c", &stop);
+			scanf("%c", &stop);
+			idDest = (stop)-'0';
 		}
-		scanf("%c", &stop);
-		scanf("%c", &stop);
-		idDest = (stop)-'0';
 	}
 }
 
